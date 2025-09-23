@@ -7,6 +7,24 @@ Petit script CLI en **PHP ≥ 8.2** qui prend un entier en entrée et affiche sa
 
 ---
 
+## Prérequis
+
+*   PHP >= 8.2
+*   Composer
+
+## Installation
+
+1.  Clonez le dépôt :
+    ```bash
+    git clone https://github.com/votre-utilisateur/votre-projet.git
+    cd votre-projet
+    ```
+
+2.  Installez les dépendances :
+    ```bash
+    composer install
+    ```
+
 ## 🚀 Utilisation
 
 Exécuter la commande suivante :

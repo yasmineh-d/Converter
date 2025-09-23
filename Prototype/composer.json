@@ -1,0 +1,17 @@
+{
+    "name": "yasmine/convertisseur-cli",
+    "description": "Un script CLI pour la conversion de nombres binaire, decimal, hexadecimal.",
+    "license": "MIT",
+
+    "require": {
+        "php": ">=8.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "scripts": {
+        "start": "php bin/convert.php"
+    }
+}
