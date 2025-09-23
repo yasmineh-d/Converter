@@ -49,15 +49,14 @@ Project Structure
 /convertisseur-numerique/
 |
 |-- bin/
-|   `-- convert.php           # Point d'entrée du script CLI
+|   `-- convert.php            # Point d'entrée du script CLI
 |
 |-- src/
-|   |-- Converter.php         # Classe principale pour la logique de conversion
-|   |-- ConverterInterface.php  # Contrat (interface) pour le convertisseur
-|   `-- OutputFormatter.php   # Trait pour formater les sorties
+|   |-- NumberConverter.php    # Classe principale pour la logique de conversion
+|   |-- ConverterInterface.php # Contrat (interface) pour le convertisseur
+|   `-- OutputFormatter.php    # Trait pour formater les sorties
 |
-|-- .gitignore                  # Fichier pour ignorer les dossiers/fichiers inutiles (ex: vendor)
-|-- composer.json             # Fichier de configuration du projet et des dépendances
-|-- LICENSE                     # Fichier de licence (ex: MIT)
-`-- README.md                   # Documentation du projet
-
+|-- .gitignore                 # Ignorer les fichiers/dossiers inutiles (ex: vendor)
+|-- composer.json              # Configuration du projet et dépendances
+|-- LICENSE                    # Licence MIT
+`-- README.md                  # Documentation du projet
