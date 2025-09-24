@@ -4,10 +4,11 @@ declare(strict_types=1);
 namespace App;
 
 class NumberConverter implements ConverterInterface { //définition d’une classe
+    
     use OutputFormatter; //pour lire/écrire du JSON
     private int $number; //qui stocke le nombre à convertir.
 
-    public function _construct(int $number){
+    public function __construct(int $number){
         $this->number = $number;
     }
     public function toDecimal(): int{
