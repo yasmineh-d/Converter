@@ -25,6 +25,11 @@ Petit script CLI en **PHP ≥ 8.2** qui prend un entier en entrée et affiche sa
     composer install
     ```
 
+3. Utiliser les scripts Composer :
+code
+Bash
+composer start  # Exécute la conversion pour le nombre 42
+composer lint   # Vérifie la syntaxe des fichiers PHP
 ## 🚀 Utilisation
 
 Exécuter la commande suivante :
