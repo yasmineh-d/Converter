@@ -1,0 +1,20 @@
+{
+    "name": "yasmine/convertisseur-cli",
+    "description": "Un outil CLI pour effectuer des conversions et des opérations logiques (ET, OU, XOR, NON) sur des entiers.",
+    "license": "MIT",
+
+    "require": {
+        "php": ">=8.2"
+    },
+
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "scripts": {
+        "start": "php bin/convert.php"
+    }
+
+
+}
