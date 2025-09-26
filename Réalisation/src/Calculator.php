@@ -3,55 +3,82 @@ declare(strict_types=1);
 
 namespace App;
 
-class Calculator
-{
-    private NumberConverter $a;
-    private ?NumberConverter $b; // B peut être null si une seule entrée
+// Critère : Classe avec propriétés typées, constructeur, visibilité.
+class Calculator {
+    // Critère : Utilisation d'un trait
+    use OutputFormatter;
 
-    public function __construct(int $a, ?int $b = null)
-    {
-        $this->a = new NumberConverter($a);
-        $this->b = $b !== null ? new NumberConverter($b) : null;
-    }
+    // Propriétés typées, privées et en lecture seule
+    public function __construct(
+        private readonly NumberConverter $converterA,
+        private readonly NumberConverter $converterB
+    ) {}
 
-    public function getA(): NumberConverter
-    {
-        return $this->a;
-    }
+    /**
+     * Calcule et retourne tous les résultats sous forme de tableau associatif.
+     */
+    public function getResults(): array {
+        $a = $this->converterA->toDecimal();
+        $b = $this->converterB->toDecimal();
 
-    public function getB(): ?NumberConverter
-    {
-        return $this->b;
-    }
-
-    public function results(): array
-    {
-        $results = [
-            "A" => [
-                "decimal" => $this->a->toDecimal(),
-                "binary"  => $this->a->toBinary(),
-                "hex"     => $this->a->toHex(),
-            ],
+        return [
+            'A ET B'  => $a & $b,
+            'A OU B'  => $a | $b,
+            'A XOR B' => $a ^ $b,
+            'NON A'   => ~$a,
         ];
+    }
+    
+    /**
+     * Affiche une table de résultats formatée dans la console.
+     */
+    public function displayTable(): void {
+        $aDec = $this->converterA->toDecimal();
+        $bDec = $this->converterB->toDecimal();
+        $aBin = $this->converterA->toBinary();
+        $bBin = $this->converterB->toBinary();
 
-        if ($this->b !== null) {
-            $results["B"] = [
-                "decimal" => $this->b->toDecimal(),
-                "binary"  => $this->b->toBinary(),
-                "hex"     => $this->b->toHex(),
-            ];
+        echo "------------------------------------------\n";
+        echo $this->format('Entrée A', "$aDec ($aBin)");
+        echo $this->format('Entrée B', "$bDec ($bBin)");
+        echo "------------------------------------------\n";
 
-            // opérations logiques entre A et B
-            $results["AND"] = $this->a->bitwiseAnd($this->b->toDecimal());
-            $results["OR"]  = $this->a->bitwiseOr($this->b->toDecimal());
-            $results["XOR"] = $this->a->bitwiseXor($this->b->toDecimal());
+        $results = $this->getResults();
+
+        foreach ($results as $label => $decResult) {
+            $binResult = decbin($decResult);
+            // Pour NOT, l'affichage binaire est complexe, on le simplifie.
+            if (str_starts_with($label, 'NON')) {
+                 $binResult = '...' . substr($binResult, -16);
+            }
+            echo $this->format($label, "$decResult ($binResult)");
         }
+        echo "------------------------------------------\n";
+    }
 
-        // opérations sur A seul
-        $results["NOT A"]      = $this->a->bitwiseNot();
-        $results["Shift A <<"] = $this->a->shiftLeft(1);
-        $results["Shift A >>"] = $this->a->shiftRight(1);
+    /**
+     * Retourne les résultats au format JSON.
+     */
+    public function getResultsAsJson(): string {
+         $results = $this->getResults();
+         $output = [
+            'inputA' => [
+                'decimal' => $this->converterA->toDecimal(),
+                'binary' => $this->converterA->toBinary(),
+            ],
+            'inputB' => [
+                'decimal' => $this->converterB->toDecimal(),
+                'binary' => $this->converterB->toBinary(),
+            ],
+            'results' => []
+         ];
 
-        return $results;
+         foreach ($results as $label => $decResult) {
+             $output['results'][$label] = [
+                'decimal' => $decResult,
+                'binary' => decbin($decResult)
+             ];
+         }
+         return json_encode($output, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
 }

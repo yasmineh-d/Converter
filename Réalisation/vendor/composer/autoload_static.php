@@ -21,6 +21,9 @@ class ComposerStaticInitcf05c948b267471e0864d48fee983513
     );
 
     public static $classMap = array (
+        'App\\Calculator' => __DIR__ . '/../..' . '/src/Calculator.php',
+        'App\\ConverterInterface' => __DIR__ . '/../..' . '/src/ConverterInterface.php',
+        'App\\OutputFormatter' => __DIR__ . '/../..' . '/src/OutputFormatter.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
 

@@ -6,5 +6,8 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Calculator' => $baseDir . '/src/Calculator.php',
+    'App\\ConverterInterface' => $baseDir . '/src/ConverterInterface.php',
+    'App\\OutputFormatter' => $baseDir . '/src/OutputFormatter.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
 );

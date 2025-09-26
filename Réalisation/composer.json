@@ -1,21 +1,28 @@
 {
-    "name": "yasmine/convertisseur-cli",
-    "description": "Un outil CLI pour effectuer des conversions et des opérations logiques (ET, OU, XOR, NON) sur des entiers.",
+    "name": "yasmine/calculatrice-logique",
+    "description": "Une calculatrice CLI pour les opérations logiques binaires.",
     "license": "MIT",
-
     "require": {
         "php": ">=8.2"
     },
-
     "autoload": {
         "psr-4": {
             "App\\": "src/"
         }
-        
     },
     "scripts": {
-        "start": "php bin/convert.php"
+        "start": "php bin/calc.php 5 3",
+        "calc": "php bin/calc.php",
+        "convert": "php bin/convert.php",
+        "validate": [
+            "echo 'Validation de la syntaxe PHP...'",
+            "find src bin -name '*.php' -print0 | xargs -0 -n1 php -l"
+        ],
+        "save": [
+            "echo 'Génération du fichier de sortie JSON...'",
+            "php bin/calc.php 5 3 --json > samples/output.json"
+        ],
+        "build": "echo 'Aucune étape de build nécessaire pour ce projet.'",
+        "test": "php bin/calc.php 10 12"
     }
-
-
 }

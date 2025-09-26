@@ -1,0 +1,28 @@
+{
+    "inputA": {
+        "decimal": 5,
+        "binary": "101"
+    },
+    "inputB": {
+        "decimal": 3,
+        "binary": "11"
+    },
+    "results": {
+        "A ET B": {
+            "decimal": 1,
+            "binary": "1"
+        },
+        "A OU B": {
+            "decimal": 7,
+            "binary": "111"
+        },
+        "A XOR B": {
+            "decimal": 6,
+            "binary": "110"
+        },
+        "NON A": {
+            "decimal": -6,
+            "binary": "1111111111111111111111111111111111111111111111111111111111111010"
+        }
+    }
+}
